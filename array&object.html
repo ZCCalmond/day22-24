@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //对象转数组
+        var scoreObject = {
+    "Tony": {
+        "Math": 95,
+        "English": 79,
+        "Music": 68
+    }, 
+    "Simon": {
+        "Math": 100,
+        "English": 95,
+        "Music": 98
+    }, 
+    "Annie": {
+        "Math": 54,
+        "English": 65,
+        "Music": 88
+    }
+}
+
+    function objToArray(obj){
+        var scoreArray = [];
+        for(i in obj){  
+            var arr = [];        
+            arr.push(i);
+            for(j in obj[i]){
+                arr.push(obj[i][j]);
+            }
+            scoreArray.push(arr);
+        }
+        return scoreArray;
+    }
+
+    console.log(objToArray(scoreObject));
+
+    var menuArr = [
+    [1, "Area1", -1],
+    [2, "Area2", -1],
+    [3, "Area1-1", 1],
+    [4, "Area1-2", 1],
+    [5, "Area2-1", 2],
+    [6, "Area2-2", 2],
+    [7, "Area1-2-3", 4],
+    [8, "Area2-2-1", 6],
+];
+
+    function arrayToObject(array){
+        var menuObject = {};
+        for(var i=0;i<array.length;i++){
+            var arr1 = [];
+            arr1 = array[i];
+            if(arr1[2]==-1){
+                menuObject[arr1[0]]={
+                    name:arr1[1],
+                    subMenu:{}
+                }
+            }
+
+            if(arr1[2]==1){
+
+                if(arr1[0]=3){
+                    menuObject["1"]["subMenu"][arr1[0]]={
+                    name:arr1[1],
+                    
+                }
+                }
+                if(arr1[0]=4){
+                    menuObject["1"]["subMenu"][arr1[0]]={
+                    name:arr1[1],
+                    subMenu:{}
+                }
+                }
+
+                
+            }
+
+            if(arr1[2]==2){
+
+                if(arr1[0]=5){
+                    menuObject["2"]["subMenu"][arr1[0]]={
+                    name:arr1[1]
+                    
+                }
+                }
+                if(arr1[0]=6){
+                    menuObject["2"]["subMenu"][arr1[0]]={
+                    name:arr1[1],
+                    subMenu:{}
+                }
+                }
+                
+
+                menuObject["2"]["subMenu"][arr1[0]]={
+                    name:arr1[1],
+                    subMenu:{}
+
+                }
+            }
+
+            if(arr1[2]==4){
+                menuObject["1"]["subMenu"]["4"]["subMenu"][arr1[0]]={
+                    name:arr1[1]
+                }
+            }
+
+            if(arr1[2]==6){
+                menuObject["2"]["subMenu"]["6"]["subMenu"][arr1[0]]={
+                    name:arr1[1]
+                }
+            }
+        }
+        return menuObject;
+    }
+
+        console.log(arrayToObject(menuArr));
+    </script>
+</body>
+</html>

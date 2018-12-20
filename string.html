@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <label>String A:
+            <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+        </label>
+        <textarea id="str-a"></textarea>
+        <label>String B:
+            <input id="radio-b" type="radio" name="str-obj" value="b">
+        </label>
+        <textarea id="str-b"></textarea>
+        <label>Num A：<input id="num-a" type="number" value="0"></label>
+        <label>Num B：<input id="num-b" type="number" value="1"></label>
+    </div>
+    <div>
+        <button id="1">获取当前选中输入的内容长度</button>
+        <button id="2">当前选中输入中的第3个字符</button>
+        <button id="3">把两个输入框的文字连接在一起输出（concat）</button>
+        <button id="4">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+        <button id="5">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+        <button id="6">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+        <button id="7">当前选中输入框的行数</button>
+        <button id="8">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+        <button id="9">把所选输入框中的内容全部转为大写</button>
+        <button id="10">把所选输入框中的内容全部转为小写</button>
+        <button id="11">把所选输入框中内容的半角空格全部去除</button>
+        <button id="12">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        var radioA = document.getElementById("radio-a");
+        var radioB = document.getElementById("radio-b");
+        var stringA = document.getElementById("str-a");
+        var stringB = document.getElementById("str-b");
+        var numA = document.getElementById("num-a");
+        var numB = document.getElementById("num-b");
+        var button1 = document.getElementById("1");
+        var button2 = document.getElementById("2");
+        var button3 = document.getElementById("3");
+        var button4 = document.getElementById("4");
+        var button5 = document.getElementById("5");
+        var button6 = document.getElementById("6");
+        var button7 = document.getElementById("7");
+        var button8 = document.getElementById("8");
+        var button9 = document.getElementById("9");
+        var button10 = document.getElementById("10");
+        var button11 = document.getElementById("11");
+        var button12 = document.getElementById("12");
+        var result = document.getElementById("result");
+
+        //获取当前选中输入的内容长度
+        button1.onclick = function () {
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.length;
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.length;
+            }
+        }
+
+        //当前选中输入中的第3个字符
+        button2.onclick = function () {
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.charAt(2);
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.charAt(2);
+            }
+        }
+
+        //把两个输入框的文字连接在一起输出（concat）
+        button3.onclick = function(){
+            result.innerHTML = stringA.value.concat(stringB.value);
+        }
+
+        //输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）
+        button4.onclick = function(){
+            result.innerHTML = stringA.value.indexOf(stringB.value);
+            if(result.innerHTML==-1){
+                result.innerHTML = "A中不存在B字符串";
+            }
+        }
+
+        //输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）
+        button5.onclick = function(){
+            result.innerHTML = stringB.value.lastIndexOf(stringA.value);
+            if(result.innerHTML==-1){
+                result.innerHTML = "B中不存在A字符串";
+            }
+        }
+
+        //使用slice获取选中输入框内容的部分内容，参数为num-a及num-b
+        button6.onclick = function(){
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.slice(numA.value,numB.value);
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.slice(numA.value,numB.value);
+            }
+        }
+
+        //当前选中输入框的行数
+        button7.onclick = function(){
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.split(/\r?\n|\r/).length;
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.split(/\r?\n|\r/).length;
+            }
+        }
+
+        //使用substr获取选中输入框内容的子字符串，参数为num-a及num-b  
+        //substr(起始位置，字符串长度)
+        button8.onclick = function(){
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.substr(numA.value,numB.value);
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.substr(numA.value,numB.value);
+            }
+        }
+        
+        //把所选输入框中的内容全部转为大写
+        button9.onclick = function(){
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.toUpperCase();
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.toUpperCase();
+            }
+        }
+
+
+
+        //把所选输入框中的内容全部转为小写
+        button10.onclick = function(){
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.toLowerCase();
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.toLowerCase();
+            }
+        }
+
+        //把所选输入框中内容的半角空格全部去除
+        //正则表达式   /\s+/g
+        button11.onclick = function(){
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.replace(/\s+/g,'');
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.replace(/\s+/g,'');
+            }
+        }
+
+
+
+        //把所选输入框中内容的a全部替换成另外一个输入框中的内容
+        button12.onclick = function(){
+            if (radioA.checked) {
+                result.innerHTML = stringA.value.replace(stringA.value,stringB.value);
+            } else if (radioB.checked) {
+                result.innerHTML = stringB.value.replace(stringB.value,stringA.value);
+            }
+        }
+
+    </script>   
+</body>
+
+</html>
